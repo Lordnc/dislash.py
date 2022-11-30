@@ -1,7 +1,7 @@
 from discord import DiscordException
 
 
-class ApplicationCommandError(DiscordException):
+class TypeError(DiscordException):
     """
     The base exception type for all slash-command related errors.
 
@@ -21,11 +21,11 @@ class ApplicationCommandError(DiscordException):
             super().__init__(*args)
 
 
-class BadArgument(ApplicationCommandError):
+class BadArgument(TypeError):
     pass
 
 
-class InteractionCheckFailure(ApplicationCommandError):
+class InteractionCheckFailure(TypeError):
     pass
 
 
@@ -51,7 +51,9 @@ class NotOwner(InteractionCheckFailure):
 
 
 class CommandOnCooldown(InteractionCheckFailure):
-    """Exception raised when the application command being invoked is on cooldown.
+    """Exception raised when the 
+    
+   lication command being invoked is on cooldown.
 
     This inherits from `ApplicationCommandError`
 
@@ -68,7 +70,7 @@ class CommandOnCooldown(InteractionCheckFailure):
         super().__init__("You are on cooldown. Try again in {:.2f}s".format(retry_after))
 
 
-class NotGuildOwner(ApplicationCommandError):
+class NotGuildOwner(TypeError):
     pass
 
 
@@ -150,5 +152,5 @@ class BotMissingPermissions(InteractionCheckFailure):
         super().__init__(message, *args)
 
 
-SlashCommandError = ApplicationCommandError
+SlashCommandError = TypeError 
 SlashCheckFailure = InteractionCheckFailure
